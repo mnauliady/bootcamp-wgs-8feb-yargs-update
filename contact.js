@@ -136,10 +136,19 @@ const update = (oldName, name, email, mobile) => {
     // data baru
     const newData = { name, email, mobile };
 
-    // validasi format nomor hp
-    if (!validator.isMobilePhone(mobile, "id-ID")) {
-      console.log("Format telephone tidak sesuai");
-      return false;
+    // jika memasukkan field nama
+    if (!name) {
+      newData.name = cek.name;
+    }
+
+    // jika memasukkan field mobile phone
+    if (mobile) {
+      // validasi format nomor hp
+      if (!validator.isMobilePhone(mobile, "id-ID")) {
+        console.log("Format telephone tidak sesuai");
+      }
+    } else {
+      newData.mobile = cek.mobile;
     }
 
     // jika memasukkan field email
