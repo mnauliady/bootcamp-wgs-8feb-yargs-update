@@ -146,6 +146,7 @@ const update = (oldName, name, email, mobile) => {
       // validasi format nomor hp
       if (!validator.isMobilePhone(mobile, "id-ID")) {
         console.log("Format telephone tidak sesuai");
+        newData.mobile = cek.mobile;
       }
     } else {
       newData.mobile = cek.mobile;
@@ -156,6 +157,7 @@ const update = (oldName, name, email, mobile) => {
       // validasi format email
       if (!validator.isEmail(email)) {
         console.log("Format email tidak sesuai");
+        newData.email = cek.email;
       }
     } else {
       newData.email = cek.email;
