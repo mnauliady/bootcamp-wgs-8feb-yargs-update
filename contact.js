@@ -126,6 +126,13 @@ const update = (oldName, name, email, mobile) => {
   const file = fs.readFileSync(pathFile, "utf-8");
   const myData = JSON.parse(file);
 
+  // mengecek apakah nama baru yg akan diupdate ada di fle json
+  const cekDuplikat = myData.find((contact) => contact.name.toLowerCase() === name.toLowerCase());
+  if (cekDuplikat) {
+    console.log(`Gunakan nama lain, ${name} sudah ada`);
+    return false;
+  }
+
   // mencari/mengecek nama yang diinput ada dalam file json
   const cek = myData.find((contact) => contact.name.toLowerCase() === oldName.toLowerCase());
 
@@ -168,6 +175,9 @@ const update = (oldName, name, email, mobile) => {
     oldData.push(newData);
     content = JSON.stringify(oldData);
     fs.writeFileSync(pathFile, content);
+  } else {
+    // jika nama tidak ada
+    console.log(`${oldName} tidak ada`);
   }
 };
 // export modul
